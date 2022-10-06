@@ -30,10 +30,12 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
+import java.util.List;
 import java.util.StringJoiner;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.tree.ErrorNode;
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.apache.commons.text.StringEscapeUtils;
 import org.cactoos.iterable.Mapped;
@@ -189,6 +191,14 @@ public final class XeListener implements ProgramListener, Iterable<Directive> {
                 this.objects.prop("atom", "?");
             }
         }
+        this.objects.prop(
+            "comment",
+            ctx.COMMENT().stream()
+                .map(ParseTree::getText)
+                .map(it -> it.replaceFirst("^#", ""))
+                .map(it -> it + "\r\n")
+                .reduce((acc, current) -> acc + current)
+        );
         this.objects.leave();
     }
 
