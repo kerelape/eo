@@ -23,7 +23,6 @@ metas
 objects
   :
   (
-    (COMMENT EOL)*
     object
     EOL
   )+
@@ -31,6 +30,7 @@ objects
 
 object
   :
+  (COMMENT EOL)*
   (
     abstraction
     |
