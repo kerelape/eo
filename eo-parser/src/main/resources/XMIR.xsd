@@ -46,6 +46,7 @@ SOFTWARE.
     <xs:attribute name="method" type="empty"/>
     <xs:attribute name="const" type="empty"/>
     <xs:attribute name="copy" type="empty"/>
+    <xs:attribute name="comment" type="xs:string"/>
   </xs:complexType>
   <xs:complexType name="program">
     <xs:sequence>
